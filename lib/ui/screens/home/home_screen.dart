@@ -54,9 +54,30 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           body: currentTab,
+          drawer:  buildDrawer(),
+
         ),
       ),
     );
+  }
+
+  Drawer buildDrawer() {
+    return  const Drawer(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.green),
+                child: Center(
+                  child: Text("WORLD NEWS" ,style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                  ),),
+                ),),
+            ],
+          ),
+        );
   }
   onCategoryClick(CategoryDm categoryDm ){
     currentTab =NewsTab(categoryDm.id) ;
