@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news/data/model/SourcesResponse.dart';
+import 'package:news/ui/screens/home/tabs/news/news_list/news_list.dart';
 import '../../../../../data/api/api_manager.dart';
 
 class NewsTab extends StatefulWidget {
+  final String categoryId ;
+  NewsTab(this.categoryId) ;
   @override
   State<NewsTab> createState() => _NewsTabState();
 }
@@ -12,10 +15,10 @@ class _NewsTabState extends State<NewsTab> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getSources(),
+        future: ApiManager.getSources(widget.categoryId),
         builder:(context , snapshot) {
           if (snapshot.hasData) {
-            return buliderTab(snapshot.data !);
+            return buliderTab(snapshot.data!);
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           } else {
@@ -24,7 +27,6 @@ class _NewsTabState extends State<NewsTab> {
         }
     );
   }
-
   Widget buliderTab(List<Source> list) {
     return DefaultTabController(
       length: list.length ,
@@ -42,9 +44,9 @@ class _NewsTabState extends State<NewsTab> {
               currentTabIndex ==list.indexOf(source))).toList()),
           Expanded(
             child: TabBarView(children:
-              list.map((source) => Container(color: Colors.red,)).toList()),
-          )
-        ],
+              list.map((source) =>
+                 NewsList(sourceID: source.id!)).toList()
+          ))],
       ),
     );
   }
@@ -53,11 +55,11 @@ class _NewsTabState extends State<NewsTab> {
     return Container(
       padding: EdgeInsets.all(9),
         decoration: BoxDecoration(
-            color: isSelected ? Color(0xff9952a2) : Colors.white,
-            border: Border.all(color: Color(0xffffffff)),
+            color: isSelected ? Color(0xff31a84c) : Colors.white,
+            border: Border.all(color: Color(0xff31a84c)),
             borderRadius: BorderRadius.circular(25)),
         child: Text(name,
-          style: TextStyle(color:isSelected ? Colors.white :Colors.black
+          style: TextStyle(color:isSelected ? Colors.white :Colors.green
               ,fontSize: 25,fontWeight: FontWeight.w400),));
    }
 }
