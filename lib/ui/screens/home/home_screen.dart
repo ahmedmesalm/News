@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/ui/screens/home/tabs/categories/categories_tab.dart';
 import 'package:news/ui/screens/home/tabs/news/news_tap.dart';
+import 'package:news/ui/screens/home/tabs/settings/settings_tab.dart';
 
 import '../../../data/model/categoris_Dm.dart';
 
@@ -56,17 +57,18 @@ class _HomeScreenState extends State<HomeScreen> {
           body: currentTab,
           drawer:  buildDrawer(),
 
+
         ),
       ),
     );
   }
 
-  Drawer buildDrawer() {
-    return  const Drawer(
+  buildDrawer() {
+    return    Drawer(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(color: Colors.green),
                 child: Center(
                   child: Text("WORLD NEWS" ,style: TextStyle(
@@ -75,13 +77,46 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 28,
                   ),),
                 ),),
+              InkWell(
+                onTap: (){
+                  currentTab = CategoriesTab(onCategoryClick);
+                  setState(() {});
+                },
+                child: const Row(
+                  children: [
+                    SizedBox(width: 10,),
+                    Icon(Icons.list,size: 30, color: Colors.black,),
+                    SizedBox(width: 15,),
+                    Text("Categories",style: TextStyle(
+                        fontSize: 25,fontWeight:FontWeight.bold ,color: Colors.black),)
+                  ],
+                ),
+              ),
+              SizedBox(height: 20,),
+              InkWell(
+                onTap: (){
+                  currentTab = SettingsTab();
+                  setState(() {});
+                },
+                child: const Row(
+                  children: [
+                    SizedBox(width: 10,),
+                    Icon(Icons.settings,size: 30, color: Colors.black,),
+                    SizedBox(width: 15,),
+                    Text("Settings",style: TextStyle(
+                        fontSize: 25,fontWeight:FontWeight.bold ,color: Colors.black),)
+                  ],
+                ),
+              )
             ],
           ),
         );
   }
+
   onCategoryClick(CategoryDm categoryDm ){
     currentTab =NewsTab(categoryDm.id) ;
     setState(() {
     });
   }
+
 }

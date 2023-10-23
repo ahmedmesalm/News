@@ -14,7 +14,7 @@ class News extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        HomeScreen.routeName:(_) => const HomeScreen(),
+        HomeScreen.routeName:(_) =>  const HomeScreen(),
       },
       initialRoute: HomeScreen.routeName,
 
