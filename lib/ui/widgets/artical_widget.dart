@@ -17,14 +17,14 @@ class ArticalWidget extends StatelessWidget {
             child:Image.network(article.urlToImage !,
               height: MediaQuery.of(context).size.height*.27,),
           ),
-          SizedBox(height: 8,),
+          const SizedBox(height: 8,),
           Text(article.source?. name ?? "", style:
-          TextStyle(fontSize: 20,),textAlign:TextAlign.start,),
-          SizedBox(height: 9,),
-          Text(article.title ??"",style: TextStyle(fontSize: 19),) ,
-          SizedBox(height: 8,),
+          const TextStyle(fontSize: 20,),textAlign:TextAlign.start,),
+          const SizedBox(height: 9,),
+          Text(article.title ??"",style: const TextStyle(fontSize: 19),) ,
+          const SizedBox(height: 8,),
           Text(article.publishedAt??"",style:
-          TextStyle(fontSize: 20),textAlign:TextAlign.end) ,
+          const TextStyle(fontSize: 20),textAlign:TextAlign.end) ,
         ],
       ),
     );

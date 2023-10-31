@@ -25,7 +25,7 @@ class NewSearchDelagate extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
     return  FutureBuilder(
-        future:ApiManager.getArticales(query),
+        future:ApiManager.getSearch(query),
         builder: (context, snapshot){
           if (snapshot.hasData) {
             return buildArticalesListView(snapshot.data!);
@@ -51,19 +51,21 @@ class NewSearchDelagate extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return const Center(child: Text("No Result",style: TextStyle(fontSize: 35),),);
+    return
+    const Center(child: Text("No Result",style: TextStyle(fontSize: 35),),);
   }
 
   @override
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
       // scaffoldBackgroundColor: Colors.green,
-      appBarTheme: const AppBarTheme(color: Color(0xff31a84c)),
-      inputDecorationTheme: const InputDecorationTheme(
-        activeIndicatorBorder: BorderSide.none,
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.zero),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.zero),
-      )
+      appBarTheme: const AppBarTheme(color: Color(0xff31a84c),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(30))
+        ),
+        toolbarHeight: 85,
+        titleSpacing: 50,),
     );
 
 }

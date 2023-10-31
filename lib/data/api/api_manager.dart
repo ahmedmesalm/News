@@ -23,10 +23,10 @@ abstract class ApiManager{
    throw Exception(sourcesResponse.message);
   }
 
-  static Future<List<Article>> getArticales([String? sourceId, String ? query])async {
+  static Future<List<Article>> getArticales(String? sourceId)async {
     Response serverResponse=
         await get(Uri.parse
-          ("https://newsapi.org/v2/everything?apiKey=$ApiKey&sources=$sourceId&q=$query")) ;
+          ("https://newsapi.org/v2/everything?apiKey=$ApiKey&sources=$sourceId")) ;
     Map json =jsonDecode(serverResponse.body) ;
     ArticaleResponse articaleResponse = ArticaleResponse.fromJson(json);
 
@@ -39,5 +39,23 @@ abstract class ApiManager{
 
 
 
-  }   //الى بتجيب بقي الاخبار نفسها من جوا التاب ال بضغط عليها
+  }
+  //الى بتجيب بقي الاخبار نفسها من جوا التاب ال بضغط عليها
+  static Future<List<Article>> getSearch(String? query)async {
+    Response serverResponse=
+    await get(Uri.parse
+      ("https://newsapi.org/v2/everything?apiKey=$ApiKey&q=$query")) ;
+    Map json =jsonDecode(serverResponse.body) ;
+    ArticaleResponse articaleResponse = ArticaleResponse.fromJson(json);
+
+    if( serverResponse.statusCode >= 200 &&
+        serverResponse.statusCode < 300 &&
+        articaleResponse.articles ?.isNotEmpty == true){
+      return articaleResponse.articles! ;
+    }
+    throw Exception("Try again later");
+
+
+
+  }
 }
