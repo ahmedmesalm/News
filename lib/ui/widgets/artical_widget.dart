@@ -15,7 +15,7 @@ class ArticalWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child:Image.network(article.urlToImage !,
-              height: MediaQuery.of(context).size.height*.25,),
+              height: MediaQuery.of(context).size.height*.27,),
           ),
           SizedBox(height: 8,),
           Text(article.source?. name ?? "", style:

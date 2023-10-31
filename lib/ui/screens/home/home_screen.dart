@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news/ui/screens/home/tabs/categories/categories_tab.dart';
 import 'package:news/ui/screens/home/tabs/news/news_tap.dart';
 import 'package:news/ui/screens/home/tabs/settings/settings_tab.dart';
-
 import '../../../data/model/categoris_Dm.dart';
+import '../../../search/new_search_delegate.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "home Scereen";
@@ -53,9 +53,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 28,
               ),
             ),
+            actions:  [
+              Padding(
+                padding:  EdgeInsets.only(right: 20),
+                child: IconButton(
+                    onPressed: () =>
+                       showSearch(
+                          context: context, delegate : NewSearchDelagate() ),
+                  icon:const Icon( Icons.search,size: 30,)),
+              )
+                ],
           ),
           body: currentTab,
           drawer:  buildDrawer(),
+
 
 
         ),
@@ -92,10 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               InkWell(
                 onTap: (){
-                  currentTab = SettingsTab();
+                  currentTab = const SettingsTab();
                   setState(() {});
                 },
                 child: const Row(

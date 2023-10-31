@@ -1,8 +1,8 @@
+
 class SourcesResponse {
   String? status;
   List<Source>? sources;
   String? code;
-
   String? message;
 
   SourcesResponse({this.status, this.sources, this.code, this.message});

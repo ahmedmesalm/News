@@ -32,7 +32,7 @@ class _NewsTabState extends State<NewsTab> {
       length: list.length ,
       child: Column(
         children: [
-          SizedBox(height: 10,),
+          const SizedBox(height: 15,),
           TabBar(
             indicatorColor:Colors.transparent,
               isScrollable: true,
@@ -45,21 +45,21 @@ class _NewsTabState extends State<NewsTab> {
           Expanded(
             child: TabBarView(children:
               list.map((source) =>
-                 NewsList(sourceID: source.id!)).toList()
+                 NewsList(source.id!)).toList()
           ))],
       ),
     );
   }
 
    Widget buildTabwidget(String name , bool isSelected) {
-    return Container(
-      padding: EdgeInsets.all(9),
-        decoration: BoxDecoration(
-            color: isSelected ? Color(0xff31a84c) : Colors.white,
-            border: Border.all(color: Color(0xff31a84c)),
-            borderRadius: BorderRadius.circular(25)),
-        child: Text(name,
-          style: TextStyle(color:isSelected ? Colors.white :Colors.green
-              ,fontSize: 25,fontWeight: FontWeight.w400),));
+      return Container(
+        padding: const EdgeInsets.all(9),
+          decoration: BoxDecoration(
+              color: isSelected ? const Color(0xff31a84c) : Colors.white,
+              border: Border.all(color: const Color(0xff31a84c)),
+              borderRadius: BorderRadius.circular(25)),
+          child: Text(name,
+            style: TextStyle(color:isSelected ? Colors.white :Colors.green
+                ,fontSize: 25,fontWeight: FontWeight.w400),));
    }
 }

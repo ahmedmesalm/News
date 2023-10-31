@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news/data/api/api_manager.dart';
+import 'package:news/ui/screens/detalis/detalis_screen.dart';
 import 'package:news/ui/screens/home/home_screen.dart';
 
 void main() {
-  runApp(News());
+  runApp(const News());
 }
 
 class News extends StatelessWidget {
@@ -15,6 +16,7 @@ class News extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName:(_) =>  const HomeScreen(),
+        DetalisArtical.routeName:(_) => const DetalisArtical(),
       },
       initialRoute: HomeScreen.routeName,
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/data/api/api_manager.dart';
 import 'package:news/data/model/ArticaleResponse.dart';
+import 'package:news/ui/screens/detalis/detalis_screen.dart';
 import 'package:news/ui/widgets/error_view.dart';
 import 'package:news/ui/widgets/loading_widget.dart';
 
@@ -8,7 +9,7 @@ import '../../../../../widgets/artical_widget.dart';
 
   class NewsList extends StatelessWidget {
    final String sourceID ;
-  const NewsList({required this.sourceID , super.key});
+  const NewsList(this.sourceID , {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,17 @@ import '../../../../../widgets/artical_widget.dart';
             return const LoadingWidget();
           }
         });
-  } 
-
+  }
   Widget buildArticalesListView(List<Article> articles) {
     return ListView.builder(
         itemCount: articles.length,
         itemBuilder: (context, index ){
-          return ArticalWidget(article: articles[index],) ;
+          return InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, DetalisArtical.routeName,
+                arguments: articles[index]);
+              },
+              child: ArticalWidget(article: articles[index],)) ;
         });
   }
 }

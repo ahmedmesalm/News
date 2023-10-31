@@ -8,7 +8,6 @@ abstract class ApiManager{
   static Future<List<Source>>getSources(String category)async{   //الى بتجيب التاب بتاع الاخبار
 
     // Uri url=Uri.parse("https://newsapi.org/v2/top-headlines/sources?apiKey=$ApiKey");
-
    Response response=
    await get(Uri.parse("https://newsapi.org/v2/top-headlines/sources?apiKey=$ApiKey&category=$category")) ;
 
@@ -24,10 +23,10 @@ abstract class ApiManager{
    throw Exception(sourcesResponse.message);
   }
 
-  static Future<List<Article>> getArticales(String sourceId)async {
+  static Future<List<Article>> getArticales([String? sourceId, String ? query])async {
     Response serverResponse=
         await get(Uri.parse
-          ("https://newsapi.org/v2/everything?apiKey=$ApiKey&sources=$sourceId")) ;
+          ("https://newsapi.org/v2/everything?apiKey=$ApiKey&sources=$sourceId&q=$query")) ;
     Map json =jsonDecode(serverResponse.body) ;
     ArticaleResponse articaleResponse = ArticaleResponse.fromJson(json);
 
