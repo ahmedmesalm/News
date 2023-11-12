@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 28,
               ),
             ),
-            actions:  [
+            actions: currentTab is NewsTab?  [
               Padding(
                 padding:  EdgeInsets.only(right: 20),
                 child: IconButton(
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           context: context, delegate : NewSearchDelagate() ),
                   icon:const Icon( Icons.search,size: 30,)),
               )
-                ],
+                ]:null,
           ),
           body: currentTab,
           drawer:  buildDrawer(),

@@ -12,13 +12,13 @@ class CategoriesTab extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         const Text(
           "     Pick your Category",
           style: TextStyle(fontSize: 28,color: Color(0xff9b27af)),
           textAlign: TextAlign.start,
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
